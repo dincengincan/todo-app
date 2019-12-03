@@ -41,12 +41,12 @@ class App extends React.Component {
     })
 
     if(isThere){
-      alert("Bu not zaten mevcut! Farklı bir not girin.")
+      alert("You have already had this note.")
       return false; 
     
       
     }else if(newTodo.length < 3){
-      alert("Notlar en az 3 karakterden oluşmalıdır.")
+      alert("Type at least 3 digits!")
       return false; 
     
     }else{
@@ -67,9 +67,7 @@ class App extends React.Component {
     
     let newTodos = this.state.todos.map(todo => {
       if(id === todo.id){
-        let currentTodo = {...todo};
-        currentTodo.checked = !currentTodo.checked;
-        return currentTodo;
+        return {...todo, checked: !todo.checked}
       }else{
         return todo;
       }
@@ -109,7 +107,7 @@ class App extends React.Component {
                   todos = {this.state.todos}
                   removeTodo = {this.removeTodo}
                   toggleCompleteStatus = {this.toggleCompleteStatus} />
-        <AddTodo todos = {this.state.todos}
+        <AddTodo  todos = {this.state.todos}
                   addTodo = {this.addTodo} />
 
         <ResetAll resetAll = {this.resetAll}/>
