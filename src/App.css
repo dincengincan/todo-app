@@ -1,22 +1,181 @@
-.App {
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  background: linear-gradient(#007991, #78ffd6);
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+
+.ToDo {
+  text-align: center;
+  border: 1px solid white;
+  width: 600px;
+  height: auto;
+  box-shadow: 2px 3px 15px rgba(0, 0, 0, 0.5);
+  background: #e2e2e2fd;
+  padding-bottom: 60px;
+  margin: 40px auto;
+}
+
+
+.ToDo-Header {
+  color: rgb(187, 187, 187);
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 200;
+  margin: 70px auto 30px;
+  font-size: 100px
+}
+
+
+.ToDo-Add-Remove {
+  color: white;
+  font-size: 1em;
+  width: 80px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  background: #007991;
+  border-radius: 20px;
+  margin: 20px auto 0;
+}
+
+.ToDo-Add-Remove-Disable{
+  color: rgb(128, 128, 128);
+  font-size: 1em;
+  width: 80px;
+  height: 40px;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: not-allowed ;
+  border: none;
+  background: #004d5c;
+  border-radius: 20px;
+  margin: 20px auto 0;
+}
+
+.ToDo-Add-Remove:hover {
+  box-shadow: 0px 0px 10px gray;
+  
+}
+
+.ToDoItem-Delete {
+  width: 35px;
+  /*padding: 5px;*/
+  height: 35px;
+  cursor: pointer;
+  background: #6c7b95;
+  border-radius: 20px;
+  color: white;
+  font-size: 15px;
+  margin-right: 5px;
+  border: none;
+}
+
+.ToDoItem-Delete:hover {
+  box-shadow: 0px 0px 5px gray;
+}
+
+.ToDo-Container {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+
+
+.ToDoItem-Text {
+  width: 90%;
+  background-color: white;
+  border: 1px solid lightgrey;
+  box-shadow: 1px 1px 1px lightgrey;
+  padding: 12px;
+  margin-right: 10px;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+.ToDoItem-Text:hover{
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+.ToDoItem-Text-Done {
+  width: 90%;
+  background-color: #e7e7e7fd;
+  color: #c0c0c0fd;
+  border: 1px solid lightgrey;
+  box-shadow: 1px 1px 1px lightgrey;
+  padding: 12px;
+  margin-right: 10px;
+  border-radius: 40px;
+  cursor: pointer;
+  text-decoration: line-through;
+
+  
+
+}
+
+.ToDoItem-Text-Done:hover{
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+.ToDoItem {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+input {
+  width: 58%;
+  padding: 10px;
+  font-size: 1em;
+  margin: 10px 10px 0;
+  border: solid 1px  #d6d6d6;;
+  border-radius: 20px;
+  
+}
+
+input:hover {
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+.Filters-Container {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.Filters-Text {
+  width: 18%;
+  color: #c0c0c0fd;
+  padding: 3px;
+  margin-right: 10px;
+  border-radius: 40px;
+  cursor: pointer;
+  display: inline-block;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color:white;
+.Filters-Text-Active {
+  width: 18%;
+  background-color:white;
+  color: black;
+  box-shadow: 1px 1px 1px lightgrey;
+  padding: 3px;
+  margin-right: 10px;
+  border-radius: 40px;
+  display: inline-block;
 }
 
-.App-link {
-  color: #09d3ac;
+.Filters-Text:hover {
+  background-color: #f3f3f3fd;
+  
+  
 }
+
+

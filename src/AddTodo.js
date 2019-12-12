@@ -28,12 +28,18 @@ export class AddTodo extends React.Component {
 
   
   render(){
+    let placeholder = "What needs to be done?"
+    if(this.props.todos.length){
+      placeholder = ""
+    }
+      
     return (
+      
       <form onSubmit={this.onAddTodo} >                              
         
-        <input  type="text" value={this.state.input} onChange={this.handleChange} />
+        <input  type="text" placeholder= {placeholder} value={this.state.input} onChange={this.handleChange} />
         
-        <button style={{ marginLeft: 5}}>ADD</button>
+        <button className = "ToDo-Add-Remove">ADD</button>
         
       </form>
     );

@@ -3,13 +3,15 @@ import './App.css';
 import {AddTodo} from './AddTodo'
 import {ResetAll} from './ResetAll'
 import {TodoList} from './TodoList'
-
+import {Filters} from './Filters'
 
 class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      todos: []
+      todos: [],
+      activeFilter: "all"
+      
     }
   }
 
@@ -28,7 +30,8 @@ class App extends React.Component {
 
   resetAll = () => {
       this.setState({
-        todos: []
+        todos: [],
+        activeFilter: "all"
       }, () => {
         window.localStorage.removeItem("todos")
       })
@@ -77,10 +80,25 @@ class App extends React.Component {
     }, () => {
       window.localStorage.setItem("todos", JSON.stringify(this.state.todos))
     })
-   
-
   }
 
+  filterTodos = (todos, filterType) => {
+    if(filterType === "all"){
+        return todos;
+    }else if (filterType === "completed"){
+        return todos.filter((todo) => todo.checked);
+    }else{
+        return todos.filter((todo) => !todo.checked);
+    }
+  }
+
+
+
+  changeFilter = (newFilter) => {
+    this.setState({
+      activeFilter: newFilter
+    })
+  }
 
 
   componentDidMount() {
@@ -98,22 +116,30 @@ class App extends React.Component {
 
   render(){
     return (
-      <div>
+      <div className = "ToDo">
         
         
-        <h1>TODO APP</h1>
+        <h1 className = "ToDo-Header">todos</h1>
+        
 
-        <TodoList 
-                  todos = {this.state.todos}
-                  removeTodo = {this.removeTodo}
-                  toggleCompleteStatus = {this.toggleCompleteStatus} />
+        <Filters  activeFilter = {this.state.activeFilter}
+                  changeFilter = {this.changeFilter}
+                  todos = {this.state.todos} />
+        
         <AddTodo  todos = {this.state.todos}
                   addTodo = {this.addTodo} />
 
-        <ResetAll resetAll = {this.resetAll}/>
+        <ResetAll resetAll = {this.resetAll}
+                  todos = {this.state.todos} />
+
+                  
+        <TodoList 
+                  todos = {this.filterTodos(this.state.todos, this.state.activeFilter)}
+                  removeTodo = {this.removeTodo}
+                  toggleCompleteStatus = {this.toggleCompleteStatus} />
 
         
-        
+
         
       </div>
     );
