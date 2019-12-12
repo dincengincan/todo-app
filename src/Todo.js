@@ -1,6 +1,8 @@
 import React from 'react';
+import {connect} from "react-redux";
+import {removeTodo} from "./actionCreators/actionCreators"
 
-export const Todo = (props) => {
+const Todo = (props) => {
     
     return(
     
@@ -18,3 +20,15 @@ export const Todo = (props) => {
         
     )
 }
+
+const mapStateToProps = state => {
+  return {
+    todos: state.todos
+  }
+};
+
+const mapDispatchToProps = dispatch => ({
+  removeTodo: (todo) => {dispatch(removeTodo(todo))}
+})
+
+export default connect(mapStateToProps, mapDispatchToProps) (Todo);

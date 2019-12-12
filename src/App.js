@@ -12,18 +12,6 @@ class App extends React.Component {
     super(props);
   }
 
-  removeTodo = (todo) => {
-    const newTodos = this.state.todos.filter(item => {
-      return item.content !== todo.content
-    })
-
-    this.setState({
-      todos: newTodos
-    }, () => {
-      window.localStorage.setItem("todos", JSON.stringify(this.state.todos))
-    })
-  }
-
   toggleCompleteStatus = (id) => {
     console.log(id);
     
@@ -84,7 +72,6 @@ class App extends React.Component {
                   
         <TodoList 
                   todos = {this.filterTodos(this.props.todos, this.props.activeFilter)}
-                  removeTodo = {this.removeTodo}
                   toggleCompleteStatus = {this.toggleCompleteStatus} />
 
 
