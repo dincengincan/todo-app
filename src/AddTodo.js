@@ -31,30 +31,13 @@ class AddTodo extends React.Component {
         })
   }
 
-  // Takes the new input as newTodo, runs some logics, add newTodo to redux state with given properties
+  // Takes the new input as newTodo, adds newTodo to redux state with given properties
   addTodo = (newTodo) => {
-    const isThere = this.props.todos.some(item => {
-      return item.content === newTodo
+    this.props.addTodo({
+      content: newTodo, id: Math.random(), checked:false
     })
 
-    if(isThere){
-      alert("You have already had this note.")
-      return false; 
-    
-      
-    }else if(newTodo.length < 3){
-      alert("Type at least 3 digits!")
-      return false; 
-    
-    }else{
-      this.props.addTodo({
-        content: newTodo, id: Math.random(), checked:false
-      })
-    }
-    
   }
-
-
   
   render(){
     let placeholder = "What needs to be done?"

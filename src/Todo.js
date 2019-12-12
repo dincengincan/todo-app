@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {toggleCompleteStatus} from "./actionCreators/actionCreators"
+import {toggleCompleteStatus, removeTodo} from "./actionCreators/actionCreators"
 
 const Todo = (props) => {
     
@@ -24,7 +24,8 @@ const Todo = (props) => {
 
 
 const mapDispatchToProps = dispatch => ({
-  toggleCompleteStatus: (id) => {dispatch(toggleCompleteStatus(id))}
+  toggleCompleteStatus: (id) => {dispatch(toggleCompleteStatus(id))},
+  removeTodo: (todo) => {dispatch(removeTodo(todo))}
 })
 
 export default connect(null, mapDispatchToProps) (Todo);

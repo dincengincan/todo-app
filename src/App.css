@@ -17,8 +17,8 @@ body {
   height: auto;
   box-shadow: 2px 3px 15px rgba(0, 0, 0, 0.5);
   background: #e2e2e2fd;
-  padding-bottom: 60px;
   margin: 40px auto;
+  
 }
 
 
@@ -88,6 +88,7 @@ body {
   width: 80%;
   margin: 0 auto;
   margin-top: 20px;
+  margin-bottom: 60px
 }
 
 
@@ -160,6 +161,7 @@ input:hover {
   border: solid 1px #d6d6d6;
   cursor: pointer;
   display: inline-block;
+  
 }
 
 .Filters-Text-Active {
@@ -177,6 +179,16 @@ input:hover {
 .Filters-Text:hover {
   background-color: #f3f3f3fd;
   
+  
+}
+
+.Notification{
+  background-color: rgb(187, 187, 187);
+  padding: 10px; 
+  margin: 70px auto 0px;
+  color: #e2e2e2fd;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 360;
   
 }
 

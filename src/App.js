@@ -42,6 +42,7 @@ class App extends React.Component {
 
   render(){
     return (
+      
       <div className = "ToDo">
         <h1 className = "ToDo-Header">todos</h1>
         
@@ -54,8 +55,14 @@ class App extends React.Component {
         <TodoList todos = {this.filterTodos(this.props.todos, this.props.activeFilter)}
         />
 
-
+      {
+        this.props.notificationVisibility && <h3 className = "Notification">{this.props.notificationMessage}</h3>
+      }
+      
+      
       </div>
+      
+      
     );
   }
   
@@ -66,7 +73,9 @@ class App extends React.Component {
 const mapStateToProps = state => {
   return {
     activeFilter: state.activeFilter,
-    todos: state.todos
+    todos: state.todos,
+    notificationVisibility: state.notificationVisibility,
+    notificationMessage: state.notificationMessage
   }
 };
 
