@@ -14,7 +14,12 @@ const Todo = (props) => {
                     : <div className = "ToDoItem-Text">{props.content}</div> 
                   }
 
-                  <button className="ToDoItem-Delete" onClick = {(e)=> {e.stopPropagation(); props.removeTodo(props)}} >X</button>
+                  {
+                    props.notificationVisibility
+                    ? <button style={{boxShadow: "none"}} className="ToDoItem-Delete" onClick = {(e)=> {e.stopPropagation()}} >X</button>
+                    : <button className="ToDoItem-Delete" onClick = {(e)=> {e.stopPropagation(); props.removeTodo(props)}} >X</button>
+                  }
+                  
                 
             </div>
         
@@ -22,10 +27,16 @@ const Todo = (props) => {
 }
 
 
+const mapStateToProps = state => {
+  return {
+    notificationVisibility: state.notificationVisibility,
+  }
+};
+
 
 const mapDispatchToProps = dispatch => ({
   toggleCompleteStatus: (id) => {dispatch(toggleCompleteStatus(id))},
   removeTodo: (todo) => {dispatch(removeTodo(todo))}
 })
 
-export default connect(null, mapDispatchToProps) (Todo);
+export default connect(mapStateToProps, mapDispatchToProps) (Todo);

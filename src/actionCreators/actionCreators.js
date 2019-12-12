@@ -23,7 +23,7 @@ export function addTodo(todo){
           })
         
         if(!todo.content) {
-            dispatch(showNotification(`Type something`))
+            dispatch(showNotification(`Type something!`))
         }else if(isThere){
             dispatch(showNotification(`You have already added "${todo.content}"!`))
         }else{

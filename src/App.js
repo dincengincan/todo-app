@@ -5,7 +5,7 @@ import ResetAll from './ResetAll'
 import {TodoList} from './TodoList'
 import Filters from './Filters'
 import {connect} from "react-redux";
-import {setTodos, addTodo} from "./actionCreators/actionCreators"
+import {setTodos} from "./actionCreators/actionCreators"
 
 class App extends React.Component {
   constructor(props){

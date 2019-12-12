@@ -40,17 +40,27 @@ class AddTodo extends React.Component {
   }
   
   render(){
+    const notification = this.props.notificationVisibility
+    console.log(notification)
+    
     let placeholder = "What needs to be done?"
     if(this.props.todos.length > 0){
       placeholder = ""
     }
+    
+    
     return (
       
       <form onSubmit={this.onAddTodo} >                              
         
         <input  type="text" placeholder= {placeholder} value={this.state.input} onChange={this.handleChange} />
         
-        <button className = "ToDo-Add-Remove">ADD</button>
+        {
+          this.props.notificationVisibility
+          ? <button style={{pointerEvents:"none"}} className = "ToDo-Add-Remove">ADD</button>
+          : <button className = "ToDo-Add-Remove">ADD</button>
+        }
+        
         
       </form>
     );
@@ -60,7 +70,8 @@ class AddTodo extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    todos: state.todos
+    todos: state.todos,
+    notificationVisibility: state.notificationVisibility,
   }
 };
 

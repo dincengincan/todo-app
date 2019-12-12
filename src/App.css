@@ -81,7 +81,7 @@ body {
 }
 
 .ToDoItem-Delete:hover {
-  box-shadow: 0px 0px 5px gray;
+  box-shadow: 0px 0px 10px gray;
 }
 
 .ToDo-Container {
