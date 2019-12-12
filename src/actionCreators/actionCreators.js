@@ -1,4 +1,4 @@
-import {SET_FILTER, RESET_TODOS, SET_TODOS, ADD_TODO, REMOVE_TODO } from "../actions/actions";
+import {SET_FILTER, RESET_TODOS, SET_TODOS, ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE_STATUS } from "../actions/actions";
 
 export function setFilter(newFilter){
     return {type: SET_FILTER, activeFilter: newFilter}
@@ -18,4 +18,8 @@ export function addTodo(todo){
 
 export function removeTodo(todo){
     return {type: REMOVE_TODO, todo}
+}
+
+export function toggleCompleteStatus(id){
+    return {type: TOGGLE_COMPLETE_STATUS, id}
 }

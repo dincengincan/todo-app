@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {removeTodo} from "./actionCreators/actionCreators"
+import {toggleCompleteStatus} from "./actionCreators/actionCreators"
 
 const Todo = (props) => {
     
@@ -9,9 +9,9 @@ const Todo = (props) => {
             <div className="ToDoItem" onClick={() => props.toggleCompleteStatus(props.id)} >
 
                   {
-                    !props.checked 
-                    ? <div className = "ToDoItem-Text">{props.content}</div> 
-                    : <div className = "ToDoItem-Text-Done">{props.content}</div> 
+                    props.checked 
+                    ? <div className = "ToDoItem-Text-Done">{props.content}</div> 
+                    : <div className = "ToDoItem-Text">{props.content}</div> 
                   }
 
                   <button className="ToDoItem-Delete" onClick = {(e)=> {e.stopPropagation(); props.removeTodo(props)}} >X</button>
@@ -21,14 +21,10 @@ const Todo = (props) => {
     )
 }
 
-const mapStateToProps = state => {
-  return {
-    todos: state.todos
-  }
-};
+
 
 const mapDispatchToProps = dispatch => ({
-  removeTodo: (todo) => {dispatch(removeTodo(todo))}
+  toggleCompleteStatus: (id) => {dispatch(toggleCompleteStatus(id))}
 })
 
-export default connect(mapStateToProps, mapDispatchToProps) (Todo);
+export default connect(null, mapDispatchToProps) (Todo);

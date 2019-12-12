@@ -9,8 +9,7 @@ export const TodoList = (props) => {
         <div className= "ToDo-Container">
             {props.todos.map(todo => {
                 return <Todo {...todo}
-                        key={todo.id}
-                        toggleCompleteStatus = {props.toggleCompleteStatus} />
+                        key={todo.id} />
                 })
             }
 

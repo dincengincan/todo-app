@@ -12,23 +12,6 @@ class App extends React.Component {
     super(props);
   }
 
-  toggleCompleteStatus = (id) => {
-    console.log(id);
-    
-    let newTodos = this.state.todos.map(todo => {
-      if(id === todo.id){
-        return {...todo, checked: !todo.checked}
-      }else{
-        return todo;
-      }
-    })
-    this.setState({
-      todos: newTodos
-    }, () => {
-      window.localStorage.setItem("todos", JSON.stringify(this.state.todos))
-    })
-  }
-
   filterTodos = (todos, filterType) => {
     if(filterType === "all"){
         return todos;
@@ -40,39 +23,36 @@ class App extends React.Component {
   }
 
 
-
-
   componentDidMount() {
     let localTodos = window.localStorage.getItem("todos")
     if(localTodos){
       localTodos = JSON.parse(localTodos);
     }
 
-    this.setState({
-      todos: localTodos || []
-    })
+    this.props.addTodos(localTodos || []);
   }
 
+  //if there is change, this will update the localStorage
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if(JSON.stringify(prevProps.todos) !== JSON.stringify(this.props.todos)){
+      window.localStorage.setItem("todos", JSON.stringify(this.props.todos))
+    }
+  }
 
 
   render(){
     return (
       <div className = "ToDo">
-        
-        
         <h1 className = "ToDo-Header">todos</h1>
         
-
         <Filters   />
         
         <AddTodo   />
 
         <ResetAll  />
-
-                  
-        <TodoList 
-                  todos = {this.filterTodos(this.props.todos, this.props.activeFilter)}
-                  toggleCompleteStatus = {this.toggleCompleteStatus} />
+       
+        <TodoList todos = {this.filterTodos(this.props.todos, this.props.activeFilter)}
+        />
 
 
       </div>
