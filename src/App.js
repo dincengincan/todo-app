@@ -1,21 +1,16 @@
 import React from 'react';
 import './App.css';
-import {AddTodo} from './AddTodo'
+import AddTodo from './AddTodo'
 import {ResetAll} from './ResetAll'
 import {TodoList} from './TodoList'
 import Filters from './Filters'
 import {connect} from "react-redux";
+import {setTodos, addTodo} from "./actionCreators/actionCreators"
 
 class App extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      todos: [],
-      activeFilter: "all"
-      
-    }
   }
-
 
   removeTodo = (todo) => {
     const newTodos = this.state.todos.filter(item => {
@@ -37,32 +32,7 @@ class App extends React.Component {
       })
   }
 
-  addTodo = (newTodo) => {
-    
-    const isThere = this.state.todos.some(item => {
-      return item.content === newTodo
-    })
-
-    if(isThere){
-      alert("You have already had this note.")
-      return false; 
-    
-      
-    }else if(newTodo.length < 3){
-      alert("Type at least 3 digits!")
-      return false; 
-    
-    }else{
-      this.setState({
-        todos: this.state.todos.concat([
-          { content: newTodo, id: Math.random(), checked: false }
-        ])
-      }, () => {
-        window.localStorage.setItem("todos", JSON.stringify(this.state.todos))
-      })
-    }
-    
-  }
+  
 
 
   toggleCompleteStatus = (id) => {
@@ -118,21 +88,18 @@ class App extends React.Component {
 
         <Filters   />
         
-        <AddTodo  todos = {this.state.todos}
-                  addTodo = {this.addTodo} />
+        <AddTodo   />
 
         <ResetAll resetAll = {this.resetAll}
-                  todos = {this.state.todos} />
+                  todos = {this.props.todos} />
 
                   
         <TodoList 
-                  todos = {this.filterTodos(this.state.todos, this.props.activeFilter)}
+                  todos = {this.filterTodos(this.props.todos, this.props.activeFilter)}
                   removeTodo = {this.removeTodo}
                   toggleCompleteStatus = {this.toggleCompleteStatus} />
 
-        
 
-        
       </div>
     );
   }
@@ -143,9 +110,15 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    activeFilter: state.activeFilter}
-}
+    activeFilter: state.activeFilter,
+    todos: state.todos
+  }
+};
+
+const mapDispatchToProps = dispatch => ({
+  addTodos: (todos) => {dispatch(setTodos(todos))},
+})
 
 
 
-export default connect(mapStateToProps, null) (App);
+export default connect(mapStateToProps, mapDispatchToProps) (App);

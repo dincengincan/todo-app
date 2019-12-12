@@ -1,7 +1,11 @@
 import React from 'react';
 import './App.css';
+import {connect} from "react-redux";
+import {addTodo} from "./actionCreators/actionCreators"
 
-export class AddTodo extends React.Component {
+
+
+class AddTodo extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -17,22 +21,46 @@ export class AddTodo extends React.Component {
       });
   }
 
+  // Firstly, takes input and pass it to addTodo function to update the state.
+  // Secondly, reset the input field.
   onAddTodo = (e) => {
     e.preventDefault();
-    this.props.addTodo(this.state.input);
+    this.addTodo(this.state.input);
         this.setState({
             input: ""
         })
+  }
+
+  // Takes the new input as newTodo, runs some logics, add newTodo to redux state with given properties
+  addTodo = (newTodo) => {
+    const isThere = this.props.todos.some(item => {
+      return item.content === newTodo
+    })
+
+    if(isThere){
+      alert("You have already had this note.")
+      return false; 
+    
+      
+    }else if(newTodo.length < 3){
+      alert("Type at least 3 digits!")
+      return false; 
+    
+    }else{
+      this.props.addTodo({
+        content: newTodo, id: Math.random(), checked:false
+      })
+    }
+    
   }
 
 
   
   render(){
     let placeholder = "What needs to be done?"
-    if(this.props.todos.length){
+    if(this.props.todos.length > 0){
       placeholder = ""
     }
-      
     return (
       
       <form onSubmit={this.onAddTodo} >                              
@@ -46,3 +74,15 @@ export class AddTodo extends React.Component {
   }
   
 }
+
+const mapStateToProps = state => {
+  return {
+    todos: state.todos
+  }
+};
+
+const mapDispatchToProps = dispatch => ({
+  addTodo: (todo) => {dispatch(addTodo(todo))}
+})
+
+export default connect(mapStateToProps, mapDispatchToProps) (AddTodo);
