@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import AddTodo from './AddTodo'
-import {ResetAll} from './ResetAll'
+import ResetAll from './ResetAll'
 import {TodoList} from './TodoList'
 import Filters from './Filters'
 import {connect} from "react-redux";
@@ -23,17 +23,6 @@ class App extends React.Component {
       window.localStorage.setItem("todos", JSON.stringify(this.state.todos))
     })
   }
-
-  resetAll = () => {
-      this.setState({
-        todos: []
-      }, () => {
-        window.localStorage.removeItem("todos")
-      })
-  }
-
-  
-
 
   toggleCompleteStatus = (id) => {
     console.log(id);
@@ -90,8 +79,7 @@ class App extends React.Component {
         
         <AddTodo   />
 
-        <ResetAll resetAll = {this.resetAll}
-                  todos = {this.props.todos} />
+        <ResetAll  />
 
                   
         <TodoList 
