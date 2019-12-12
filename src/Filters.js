@@ -1,5 +1,8 @@
 import React from 'react';
 import './App.css';
+import {connect} from "react-redux";
+import {setFilter} from "./actionCreators/actionCreators";
+
 
 const options = [
     {label: "all", labelKey: "all", id: 1},
@@ -7,7 +10,7 @@ const options = [
     {label: "uncompleted", labelKey: "uncompleted", id: 3}
 ];
 
-export const Filters = (props) => {
+const Filters = (props) => {
     return(
         
         <div className = "Filters-Container">
@@ -25,3 +28,16 @@ export const Filters = (props) => {
         </div>
     )
 }
+
+const mapStateToProps = state => {
+    return{
+        activeFilter: state.activeFilter
+    }
+};
+
+const mapDispatchToProps = dispatch => ({
+    changeFilter: (newFilter) => {dispatch(setFilter(newFilter))}
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filters);

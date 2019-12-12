@@ -3,7 +3,8 @@ import './App.css';
 import {AddTodo} from './AddTodo'
 import {ResetAll} from './ResetAll'
 import {TodoList} from './TodoList'
-import {Filters} from './Filters'
+import Filters from './Filters'
+import {connect} from "react-redux";
 
 class App extends React.Component {
   constructor(props){
@@ -30,8 +31,7 @@ class App extends React.Component {
 
   resetAll = () => {
       this.setState({
-        todos: [],
-        activeFilter: "all"
+        todos: []
       }, () => {
         window.localStorage.removeItem("todos")
       })
@@ -94,12 +94,6 @@ class App extends React.Component {
 
 
 
-  changeFilter = (newFilter) => {
-    this.setState({
-      activeFilter: newFilter
-    })
-  }
-
 
   componentDidMount() {
     let localTodos = window.localStorage.getItem("todos")
@@ -122,9 +116,7 @@ class App extends React.Component {
         <h1 className = "ToDo-Header">todos</h1>
         
 
-        <Filters  activeFilter = {this.state.activeFilter}
-                  changeFilter = {this.changeFilter}
-                  todos = {this.state.todos} />
+        <Filters   />
         
         <AddTodo  todos = {this.state.todos}
                   addTodo = {this.addTodo} />
@@ -134,7 +126,7 @@ class App extends React.Component {
 
                   
         <TodoList 
-                  todos = {this.filterTodos(this.state.todos, this.state.activeFilter)}
+                  todos = {this.filterTodos(this.state.todos, this.props.activeFilter)}
                   removeTodo = {this.removeTodo}
                   toggleCompleteStatus = {this.toggleCompleteStatus} />
 
@@ -147,4 +139,13 @@ class App extends React.Component {
   
 }
 
-export default App;
+
+
+const mapStateToProps = state => {
+  return {
+    activeFilter: state.activeFilter}
+}
+
+
+
+export default connect(mapStateToProps, null) (App);
