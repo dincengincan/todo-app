@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css';
 import {connect} from "react-redux";
-import {setFilter} from "./actionCreators/actionCreators";
+import {setFilter} from "../actionCreators/actionCreators";
+import { Styled } from './style';
 
 
 const options = [
@@ -13,19 +13,17 @@ const options = [
 const Filters = (props) => {
     return(
         
-        <div className = "Filters-Container">
+        <Styled.FilterContainer>
             {
                 options.map((option) => {
                     if(option.label === props.activeFilter){
-                        return <div className="Filters-Text-Active" onClick = {() => {props.changeFilter(option.labelKey)}} >{option.label}</div>
+                        return <Styled.FilterActive onClick = {() => {props.changeFilter(option.labelKey)}} >{option.label}</Styled.FilterActive>
                     }else{
-                        return <div className="Filters-Text" onClick = {() => {props.changeFilter(option.labelKey)}} >{option.label}</div>
+                        return <Styled.Filter onClick = {() => {props.changeFilter(option.labelKey)}} >{option.label}</Styled.Filter>
                     }    
                 })
             }
-
-             
-        </div>
+        </Styled.FilterContainer>
     )
 }
 

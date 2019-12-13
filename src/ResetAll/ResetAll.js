@@ -1,19 +1,17 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {resetTodos} from "./actionCreators/actionCreators"
+import {resetTodos} from "../actionCreators/actionCreators"
+import { Styled } from './style';
+
+
 
 const ResetAll = (props) => {
     let {resetTodos, todos} = props;
     return(
         <div >
-            {
-                todos.length 
-                ? <button onClick={resetTodos} className = "ToDo-Add-Remove">RESET</button>
-                : <button  className = "ToDo-Add-Remove-Disable" >RESET</button>
-            }
-            
-            
-            
+
+          <Styled.Button todosLength={todos.length} notification={props.notificationVisibility} onClick={resetTodos} >RESET</Styled.Button>
+        
         </div>
         
     )
@@ -21,7 +19,8 @@ const ResetAll = (props) => {
 
 const mapStateToProps = state => {
     return {
-      todos: state.todos
+      todos: state.todos,
+      notificationVisibility: state.notificationVisibility,
     }
   };
   

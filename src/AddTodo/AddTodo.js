@@ -1,15 +1,14 @@
 import React from 'react';
-import './App.css';
 import {connect} from "react-redux";
-import {addTodo} from "./actionCreators/actionCreators"
-
+import {addTodo} from "../actionCreators/actionCreators"
+import {Styled} from './style'
 
 
 class AddTodo extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      input: ""
+      input: "",
     }
   }
 
@@ -40,6 +39,9 @@ class AddTodo extends React.Component {
   }
   
   render(){
+    
+    
+    
     const notification = this.props.notificationVisibility
     console.log(notification)
     
@@ -53,13 +55,9 @@ class AddTodo extends React.Component {
       
       <form onSubmit={this.onAddTodo} >                              
         
-        <input  type="text" placeholder= {placeholder} value={this.state.input} onChange={this.handleChange} />
-        
-        {
-          this.props.notificationVisibility
-          ? <button style={{pointerEvents:"none"}} className = "ToDo-Add-Remove">ADD</button>
-          : <button className = "ToDo-Add-Remove">ADD</button>
-        }
+        <Styled.Input  type="text" placeholder= {placeholder} value={this.state.input} onChange={this.handleChange} />
+       
+        <Styled.Button notification={this.props.notificationVisibility} >ADD</Styled.Button>
         
         
       </form>

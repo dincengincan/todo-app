@@ -11,7 +11,7 @@ export function setTodos(todos){
 export function resetTodos(){
     return (dispatch) => {
         dispatch({type: RESET_TODOS});
-        dispatch(showNotification(`All notes were removed!`))
+        dispatch(showNotification(`All todos were removed !`))
     }
 }
 
@@ -23,12 +23,12 @@ export function addTodo(todo){
           })
         
         if(!todo.content) {
-            dispatch(showNotification(`Type something!`))
+            dispatch(showNotification(`Type something !`))
         }else if(isThere){
-            dispatch(showNotification(`You have already added "${todo.content}"!`))
+            dispatch(showNotification(`You have already added "${todo.content}" !`))
         }else{
             dispatch({type: ADD_TODO, todo});
-            dispatch(showNotification(`"${todo.content}" was added!`))
+            dispatch(showNotification(`"${todo.content}" was added !`))
         }
         
     }
@@ -37,7 +37,7 @@ export function addTodo(todo){
 export function removeTodo(todo){
     return (dispatch) => {
         dispatch({type: REMOVE_TODO, todo});
-        dispatch(showNotification(`"${todo.content}" was removed!`))
+        dispatch(showNotification(`"${todo.content}" was removed !`))
     }
 }
 

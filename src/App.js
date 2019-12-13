@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.css';
-import AddTodo from './AddTodo'
-import ResetAll from './ResetAll'
-import {TodoList} from './TodoList'
-import Filters from './Filters'
+import { Styled } from './style';
+import AddTodo from './AddTodo/AddTodo'
+import ResetAll from './ResetAll/ResetAll'
+import {TodoList} from './TodoList/TodoList'
+import Filters from './Filters/Filters'
 import {connect} from "react-redux";
 import {setTodos} from "./actionCreators/actionCreators"
+import {CSSTransitionGroup } from 'react-transition-group';
+
 
 class App extends React.Component {
   constructor(props){
@@ -43,24 +46,29 @@ class App extends React.Component {
   render(){
     return (
       
-      <div className = "ToDo">
-        <h1 className = "ToDo-Header">todos</h1>
+      <Styled.TodoWrapper>
+        <Styled.H1>todos</Styled.H1>
         
         <Filters   />
         
         <AddTodo   />
 
         <ResetAll  />
-       
+        
         <TodoList todos = {this.filterTodos(this.props.todos, this.props.activeFilter)}
         />
 
-      {
-        this.props.notificationVisibility && <h3 className = "Notification">{this.props.notificationMessage}</h3>
-      }
+        <CSSTransitionGroup 
+          transitionName="example"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={700}
+         >
+            {
+              this.props.notificationVisibility && <Styled.H3 >{this.props.notificationMessage}</Styled.H3>
+            }
+        </CSSTransitionGroup>
       
-      
-      </div>
+      </Styled.TodoWrapper>
       
       
     );
