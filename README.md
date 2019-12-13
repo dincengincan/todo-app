@@ -5,9 +5,17 @@ After building this app with React, I added Redux to enhance my experience and k
 
 ## Demo
 
-Use the app online at https://dincengincan.github.io/burger-builder-react/
+Use the app online at https://dincengincan.github.io/todo-app-react-redux/
 
-![Todo App GIF](demo/burger-builder.gif) 
+![todo GIF](demo/todo.gif) 
+
+## Technologies Used
+* JavaScript
+* [React](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+* Redux Thunk
+* Styled Components
+* React Transition Group
 
 ## Run Project Locally
 
@@ -20,13 +28,7 @@ To run the project locally:
 * Run `npm install`
 * Run `npm start` 
 
-## Technologies Used
-* JavaScript
-* [React](https://reactjs.org/)
-* [Redux](https://redux.js.org/)
-* Redux Thunk
-* Styled Components
-* React Transition Group
+
 
 
 
